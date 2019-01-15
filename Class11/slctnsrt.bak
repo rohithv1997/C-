@@ -1,0 +1,28 @@
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+long int a[100], n, i, j, beg, mid, end, data, tmp, pos, min;
+cout<<"Enter n";
+cin>>n;
+cout<"Elements";
+for(i=0;i<n;i++)
+	cin>>a[i];
+for(i=0;i<n;i++)
+{	min=a[i];
+	pos=i;
+	for(j=i+1;j<n;j++)
+	{	if(a[j]<min)
+		{	pos=j;
+			min=a[j];
+		}
+	}
+	tmp=a[i];
+	a[i]=a[pos];
+	a[pos]=tmp;
+}
+clrscr();
+for(i=0;i<n;i++)
+	cout<<a[i]<<endl;
+}
+

@@ -1,0 +1,211 @@
+#include<iostream.h>
+#include<string.h>
+#include<stdio.h>
+
+/*Program #10 :
+To sort students in descending order of their total marks  using insertion
+sort*/
+
+int n;
+
+class student{	int rollno;
+					char name[20];
+					float marks[5], total, avg;
+
+					public:
+					student();
+					void instu();
+					void outstu();
+					void sortstu();
+				 };
+
+student list[20];
+
+student::student()
+{	rollno=0;
+	strcpy(name,"No Name");
+	for(int i=0;i<5;i++)
+		marks[i]=0.0;
+	total=avg=0.0;
+}
+
+
+void student::instu()
+{  int i;
+	cout<<"Enter Name"<<endl;
+	gets(name);
+	cout<<"Enter Roll Number"<<endl;
+	cin>>rollno;
+	cout<<"Enter Marks of 5 Subjects"<<endl;
+	for(i=0;i<5;i++)
+		cin>>marks[i];
+}
+
+
+void student::outstu()
+{  int i;
+	cout<<"Name = "<<name<<endl;
+	cout<<"Roll Number  = "<<rollno<<endl;
+	cout<<"Marks = ";
+	for(i=0;i<5;i++)
+		cout<<marks[i]<<'\t';
+	cout<<endl<<"Total = "<<total<<endl;
+	cout<<"Average = "<<avg<<endl;
+}
+
+
+void student::sortstu()
+{  student tmp;
+	int i, j;
+	for(i=0;i<n;i++)
+	{	for(j=0;j<5;j++)
+			list[i].total+=list[i].marks[j];
+		list[i].avg=list[i].total/5.0;
+	}
+	for( i=1;i<n;i++)
+	{	j=i-1;
+		tmp=list[i];
+		while(tmp.total>list[j].total && j>=0)
+		{	list[j+1]=list[j];
+			--j;
+		}
+		list[j+1]=tmp;
+	}
+}
+
+
+void main()
+{  int i;
+	cout<<"Enter Number of Students"<<endl;
+	cin>>n;
+	for(i=0;i<n;i++)
+	{	list[i].instu();
+		cout<<endl<<endl;
+	}
+	list[0].sortstu();
+	for(i=0;i<n;i++)
+	{	list[i].outstu();
+		cout<<endl<<endl;
+	}
+}
+
+
+/*Sample Input/Output:
+
+Enter Number of Students
+6
+Enter Name
+rohith
+Enter Roll Number
+1234
+Enter Marks of 5 Subjects
+100
+100
+100
+100
+100
+
+
+Enter Name
+shravan
+Enter Roll Number
+2345
+Enter Marks of 5 Subjects
+99.5
+99.5
+99.5
+99.5
+99.5
+
+
+Enter Name
+raghul
+Enter Roll Number
+3456
+Enter Marks of 5 Subjects
+99
+99
+99
+99
+99
+
+
+Enter Name
+neelesh
+Enter Roll Number
+4567
+Enter Marks of 5 Subjects
+98.5
+98.5
+98.5
+98.5
+98.5
+
+
+Enter Name
+shobith
+Enter Roll Number
+5678
+Enter Marks of 5 Subjects
+98.
+98
+98
+98
+98
+
+
+Enter Name
+shantanu
+Enter Roll Number
+6789
+Enter Marks of 5 Subjects
+97.5
+97
+96.5
+96
+95.5
+
+
+Name = rohith
+Roll Number  = 1234
+Marks = 100     100     100     100     100
+Total = 500
+Average = 100
+
+
+Name = shravan
+Roll Number  = 2345
+Marks = 99.5    99.5    99.5    99.5    99.5
+Total = 497.5
+Average = 99.5
+
+
+Name = raghul
+Roll Number  = 3456
+Marks = 99      99      99      99      99
+Total = 495
+Average = 99
+
+
+Name = neelesh
+Roll Number  = 4567
+Marks = 98.5    98.5    98.5    98.5    98.5
+Total = 492.5
+Average = 98.5
+
+
+Name = shobith
+Roll Number  = 5678
+Marks = 98      98      98      98      98
+Total = 490
+Average = 98
+
+
+Name = shantanu
+Roll Number  = 6789
+Marks = 97.5    97      96.5    96      95.5
+Total = 482.5
+Average = 96.5
+
+
+*/

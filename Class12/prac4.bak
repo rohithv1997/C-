@@ -1,0 +1,176 @@
+#include<iostream.h>
+#include<stdio.h>
+#include<string.h>
+
+/*Program #4 :
+Define a class "bill" with following description :
+
+private members:
+icode (int)
+iname (char [])
+price (float)
+qty (int)
+total_price (float)
+discount(float)
+calc_disc() - to calculate discount and total_price
+
+public members:
+indata() - accepts icode, iname, price, qty.
+				invokes calc_disc() to calculate discount and total_price
+outdata()- displays details of customer's purchases in neat format and also
+total amount to be paid by customer
+*/
+
+
+class bill{	int icode;
+				char iname[20];
+				float price;
+				int qty;
+				float total_price;
+				float discount;
+				float calc_disc();
+
+				public:
+				bill();
+				void indata();
+				void showdata();
+	} list[10];
+
+int n=0;
+float tot=0.0;
+
+bill::bill()
+{  int i;
+	for(i=0;i<10;i++)
+	{	icode=0;
+		strcpy(iname,"ABCD");
+		price=0.0;
+		qty=0;
+		total_price=0.0;
+		discount=0.0;
+	}
+}
+
+float bill::calc_disc()
+{     float discount2=0.0;
+		total_price=price*(float)(qty);
+		if(total_price<1000.0)
+			discount2=0.0;
+		else if(total_price>=1000.0 && total_price<2000.0)
+			discount2=0.01*total_price;
+		else if(total_price>=2000.0 && total_price<3000.0)
+			discount2=0.02*total_price;
+		else if(total_price>=3000.0 && total_price<5000.0)
+			discount2=0.03*total_price;
+		else if(total_price>=5000.0)
+			discount2=0.05*total_price;
+		total_price-=discount2;
+		for(int i=0;i<n;i++)
+			tot+=list[i].total_price;
+		return discount2;
+}
+
+void bill::indata()
+{	int i=1;
+	cout<<"BILL DESCRIPTION"<<endl;
+	while(i)
+	{  cout<<"Enter Code"<<endl;
+		cin>>list[n].icode;
+		cout<<"Enter Name"<<endl;
+		gets(list[n].iname);
+		cout<<"Enter Price"<<endl;
+		cin>>list[n].price;
+		cout<<"Enter Quantity"<<endl;
+		cin>>list[n].qty;
+		cout<<"Continue.. (1 for YES , 0 for No)"<<endl;
+		cin>>i;
+		if(i==1)
+			i=1;
+		else
+			i=0;
+		++n;
+	}
+	for(i=0;i<n;i++)
+		list[i].discount=list[i].calc_disc();
+	return;
+}
+
+void bill::showdata()
+{	cout<<"BILL DETAILS"<<endl;
+	for(int i=0;i<n;i++)
+	{	cout<<"Code"<<'\t'<<list[i].icode<<endl;
+		cout<<"Name"<<'\t'<<list[i].iname<<endl;
+		cout<<"Price"<<'\t'<<list[i].price<<endl;
+		cout<<"Quantity"<<'\t'<<list[i].qty<<endl;
+		cout<<"Discount"<<'\t'<<list[i].discount<<endl;
+		cout<<"Total Price"<<'\t'<<list[i].total_price<<endl;
+		cout<<endl;
+	}
+	cout<<endl<<"Net Total"<<'\t'<<tot;
+	return;
+}
+
+void main()
+{	list[0].indata();
+	list[0].showdata();
+}
+
+/*	Sample I/O
+BILL DESCRIPTION
+Enter Code
+123
+Enter Name
+rice
+Enter Price
+56
+Enter Quantity
+4
+Continue.. (1 for YES , 0 for No)
+1
+Enter Code
+456
+Enter Name
+wheat
+Enter Price
+78.5
+Enter Quantity
+6
+Continue.. (1 for YES , 0 for No)
+1
+Enter Code
+789
+Enter Name
+biscuit
+Enter Price
+82.5
+Enter Quantity
+9
+Continue.. (1 for YES , 0 for No)
+0
+
+===============================================================================
+
+BILL DETAILS
+Code    123
+Name    rice
+Price   56
+Quantity        4
+Discount        0
+Total Price     224
+
+Code    456
+Name    wheat
+Price   78.5
+Quantity        6
+Discount        0
+Total Price     471
+
+Code    789
+Name    biscuit
+Price   82.5
+Quantity        9
+Discount        0
+Total Price     742.5
+
+
+*/

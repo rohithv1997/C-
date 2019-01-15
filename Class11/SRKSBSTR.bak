@@ -1,0 +1,30 @@
+#include<iostream.h>
+#include<string.h>
+#include<stdio.h>
+void main()
+{
+char a[50], s[10], tmp[20];
+int n, i, j, k=0, pos=0 , f=0;
+cout<<"Search text and find its position"<<endl;
+cout<<"Enter text"<<endl;
+puts(a);
+cout<<"Search"<<endl;
+puts(a);
+n=strlen(a);
+a[n]=' ';
+n++;
+for(i=0;i<n;i++)
+{	for(j=0;a[i]!='\0'&&  a[i]!=' ';j++, k++)
+		tmp[k]=a[j] ;
+	tmp[k]='\0';
+	pos=j;
+	if(strcmpi(s,tmp)==0)
+	{	cout<<"Present at"<<pos<<endl;
+		f=1;
+	}
+		k=0;
+}
+if(i==n && f==0)
+	cout<<"Not Found";
+}
+

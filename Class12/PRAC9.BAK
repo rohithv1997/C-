@@ -1,0 +1,333 @@
+#include<iostream.h>
+#include<string.h>
+#include<math.h>
+#include<stdio.h>
+
+/* Program #9:
+To implement Hierarchial type of inheritance  with public visibility mode
+*/
+
+int n=0, ns=0;
+long as=10000;
+
+class account{ protected:
+					char name[20];
+					long accno;
+
+					public:
+					account();
+					void inacc();
+					void outacc();
+				 };
+
+class savings:public account
+{	float balance;
+
+	public:
+	savings();
+	void insav();
+	void outsav();
+	void operations();
+};
+savings lists[10];
+
+account::account()
+{	strcpy(name,"No Name");
+
+	accno=0;
+}
+
+void account::inacc()
+{	cout<<"Enter Name"<<endl;
+	gets(name);
+}
+
+void account::outacc()
+{	cout<<"Name : "<<name<<endl;
+	cout<<"Account Number : "<<accno<<endl;
+}
+
+savings::savings()
+{	strcpy(name,"No Name");
+	accno=0;
+	balance=0.0;
+}
+
+void savings::insav()
+{  cout<<endl<<endl;
+	cout<<"Enter Name"<<endl;
+	gets(name);
+	cout<<"Enter Opening Balance"<<endl;
+	cin>>balance;
+	accno=as;
+	++as;
+}
+
+void savings::outsav()
+{   cout<<endl<<endl;
+	cout<<"Name = "<<name<<endl;
+	cout<<"Account Number = "<<accno<<endl;
+	cout<<"Balance = "<<balance<<endl;
+}
+
+void savings::operations()
+{  int ch=0;
+	float ent=0.0;
+	cout<<endl<<endl;
+	cout<<"Hi, "<<name<<"!"<<endl;
+	while(balance<2000.0 && ch==0)
+	{	cout<<endl<<endl;
+		cout<<"Balance less than Critical Balance"<<endl;
+		cout<<"Enter 1 to deposit immediately"<<endl;
+		cin>>ch;
+		if(ch==1)
+		{	cout<<"Enter Amount to be deposited"<<endl;
+			cin>>ent;
+			balance+=ent;
+			cout<<"New Balance = "<<balance<<endl;
+			ch=0;
+		}
+		else
+			ch=1;
+	}
+	while(ch==0)
+	{  cout<<endl<<endl;
+		cout<<"Menu"<<endl<<"1.Deposit Money"<<endl<<"2.Withdraw Money"<<endl;
+		cin>>ch;
+		if(ch==1)
+		{	cout<<"Enter Amount to be deposited"<<endl;
+			cin>>ent;
+			balance+=ent;
+			ch=0;
+		}
+		else if(ch==2)
+		{	cout<<"Enter Amount to be withdrawn"<<endl;
+			cin>>ent;
+			balance-=ent;
+			ch=0;
+		}
+		else
+			cout<<"Wrong choice"<<endl;
+		cout<<"Enter 1 to Continue, 0 to stop"<<endl;
+		cin>>ch;
+		if(ch==1)
+			ch=0;
+		else
+			ch=1;
+	}
+}
+
+void main()
+{	cout<<"Savings Account imposes penalty of 5% if balance <2000.0"<<endl;
+	cout<<"Enter Number of Customers"<<endl;
+	cin>>n;
+	int i;
+	for(i=0;i<n;i++)
+		lists[i].insav();
+	for(i=0;i<n;i++)
+		lists[i].operations();
+	for(i=0;i<n;i++)
+		lists[i].outsav();
+}
+
+
+/*Sample Input/ Output:
+
+Savings Account imposes penalty of 5% if balance <2000.0
+Enter Number of Customers
+5
+
+
+Enter Name
+rohith
+Enter Opening Balance
+12345.67
+
+
+Enter Name
+arjun
+Enter Opening Balance
+8901.23
+
+
+Enter Name
+vyas
+Enter Opening Balance
+234.56
+
+
+Enter Name
+gautham
+Enter Opening Balance
+5678.91
+
+
+Enter Name
+abhijit
+Enter Opening Balance
+234.56
+
+
+Hi, rohith!
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+1
+Enter Amount to be deposited
+4567.89
+Enter 1 to Continue, 0 to stop
+1
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+2
+Enter Amount to be withdrawn
+301.23
+Enter 1 to Continue, 0 to stop
+0
+
+
+Hi, arjun!
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+1
+Enter Amount to be deposited
+456
+Enter 1 to Continue, 0 to stop
+1
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+2
+Enter Amount to be withdrawn
+568
+Enter 1 to Continue, 0 to stop
+0
+
+
+Hi, vyas!
+
+
+Balance less than Critical Balance
+Enter 1 to deposit immediately
+1
+Enter Amount to be deposited
+2345
+New Balance = 2579.56
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+1
+Enter Amount to be deposited
+3456
+Enter 1 to Continue, 0 to stop
+1
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+2
+Enter Amount to be withdrawn
+457
+Enter 1 to Continue, 0 to stop
+0
+
+
+Hi, gautham!
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+1
+Enter Amount to be deposited
+1
+Enter 1 to Continue, 0 to stop
+1
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+2
+Enter Amount to be withdrawn
+5
+Enter 1 to Continue, 0 to stop
+0
+
+
+Hi, abhijit!
+
+
+Balance less than Critical Balance
+Enter 1 to deposit immediately
+1
+Enter Amount to be deposited
+235
+New Balance = 469.56
+
+
+Balance less than Critical Balance
+Enter 1 to deposit immediately
+1
+Enter Amount to be deposited
+4656
+New Balance = 5125.56
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+1
+Enter Amount to be deposited
+23
+Enter 1 to Continue, 0 to stop
+1
+
+
+Menu
+1.Deposit Money
+2.Withdraw Money
+2
+Enter Amount to be withdrawn
+450
+Enter 1 to Continue, 0 to stop
+0
+
+
+Name = rohith
+Account Number =10000
+Balance = 16612.3
+
+
+Name = arjun
+Account Number = 10001
+Balance = 8789.23
+
+
+Name = vyas
+Account Number = 10002
+Balance = 5578.56
+
+
+Name = gautham
+Account Number = 10003
+Balance = 5674.91
+
+
+Name = abhijit
+Account Number = 10004
+Balance = 4698.56
+

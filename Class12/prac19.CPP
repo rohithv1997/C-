@@ -1,0 +1,63 @@
+#include<iostream.h>
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+
+/*
+Program #19 :
+To return a pointer to the first occurance of the character given
+*/
+
+
+char ch, a[100], *ptr;
+int n, i;
+
+
+char* search(char a[100], char ch1)
+{	int flag=0;
+	ptr=a;
+	n=strlen(a);
+	for(i=0;i<n;i++)
+	{	if(ch==a[i])
+		{	flag=1;
+			return ptr;
+			break;
+		}
+		else
+			++ptr;
+	}
+	if(i==n && flag==0)
+		return '\0';
+}
+
+
+void main()
+{  cout<<"Enter Text"<<endl;
+	gets(a);
+	cout<<"Enter Character to be Searched"<<endl;
+	cin>>ch;
+	ptr=search(a,ch);
+	cout<<endl;
+	if(ptr!='\0')
+	{  cout<<"Pointer Position : \t"<<i+1<<endl;
+		cout<<"Pointed String : \t"<<ptr<<endl;
+		cout<<"Pointed Character : \t"<<*ptr<<endl;
+      cout<<"Pointer Address : \t"<<&ptr<<endl;
+	}
+	else
+		cout<<"Character Not Found"<<endl;
+}
+
+
+/*Sample Input/Output:
+Enter Text
+this is a trial run
+Enter Character to be Searched
+r
+
+Pointer Position :      12
+Pointed String :        rial run
+Pointed Character :     r
+Pointer Address :       0x1dbf0fc6
+
+*/

@@ -1,0 +1,104 @@
+#include<iostream.h>
+#include<string.h>
+#include<stdio.h>
+
+
+class book{	int code;
+				char name[20];
+				float price;
+
+				public:
+				book();
+				void indata();
+				void outdata();
+			 }list[10];
+
+int f=-1, r=-1;
+
+
+book::book()
+{	code=0;
+	strcpy(name,"No Name");
+	price=0.0;
+}
+
+
+void book::indata()
+{	cout<<"Enter Code"<<endl;
+	cin>>code;
+	cout<<"Enter Name"<<endl;
+	gets(name);
+	cout<<"Enter Price"<<endl;
+	cin>>price;
+}
+
+
+void book::outdata()
+{	cout<<endl<<endl;
+	cout<<"Code : "<<'\t'<<code<<endl;
+	cout<<"Name : "<<'\t'<<name<<endl;
+	cout<<"Price : "<<'\t'<<price<<endl;
+}
+
+
+void insert()
+{	book tmp;
+	cout<<"Enter Data to be Inserted"<<endl;
+	if(r==9)
+		cout<<"Overflow"<<endl;
+	else if(r==-1)
+	{	f=0;
+		r=0;
+		tmp.indata();
+		list[r]=tmp;
+	}
+	else
+	{	++r;
+		tmp.indata();
+		list[r]=tmp;
+	}
+}
+
+
+void deletion()
+{	if(f==-1)
+		cout<<"Underflow"<<endl;
+	else if(f==r)
+	{	cout<<"Deleted Data"<<endl;
+		list[f].outdata();
+		f=-1;
+		r=-1;
+	}
+	else
+	{	cout<<"Deleted Data"<<endl;
+		list[f].outdata();
+		++f;
+	}
+}
+
+void main()
+{	int c=10, i;
+	while(c==10)
+	{	cout<<"Array Implemented Queue Menu"<<endl;
+		cout<<"1.Insert Element"<<endl;
+		cout<<"2.Delete Element"<<endl;
+		cout<<"3.Display Queue"<<endl;
+		cout<<"Enter Choice"<<endl;
+		cin>>c;
+		if(c==1)
+			insert();
+		else if(c==2)
+			deletion();
+		else if(c==3)
+		{  if(f==-1)
+				cout<<"Empty Queue"<<endl;
+			else
+				for(i=f;i<=r;i++)
+					list[i].outdata();
+		}
+		cout<<"Enter 1 to Continue"<<endl;
+		cin>>c;
+		if(c==1)
+			c=10;
+	}
+}
